@@ -1,0 +1,44 @@
+syntax="proto3";
+
+package Obn.Service.FosterHome;
+
+option ruby_package = "Obn::Service::FosterHome";
+
+// import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
+
+service FosterHomeService {
+    rpc get(FosterHomeRequest) returns (FosterHome);
+    rpc search(FosterHomeSearchRequest) returns (FosterHomeSearchResult);
+    rpc save(FosterHome) returns (FosterHome);
+    rpc delete(FosterHome) returns (FosterHomeDeleteResult);
+}
+
+message FosterHomeRequest {
+    int64 id = 1;
+}
+
+message FosterHomeSearchRequest {
+    string filter = 1;
+    repeated google.protobuf.Any values = 2;
+}
+
+message FosterHome {
+    int64 id = 1;
+    string name = 2;
+    string address = 3;
+    string city = 4;
+    string postalCode = 5;
+    string state = 6;
+    string phoneNumber = 7;
+    string eMail = 8;
+}
+
+message FosterHomeSearchResult {
+    repeated FosterHome homes = 1;
+}
+
+message FosterHomeDeleteResult {
+    bool deleted = 1;
+}
+

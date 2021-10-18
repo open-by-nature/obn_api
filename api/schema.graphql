@@ -1,0 +1,43 @@
+type FosterHome {
+    id: ID!
+    name: String!
+    address: String!
+    city: String!
+    postalCode: String!
+    state: String!
+    phoneNumber: String!
+    eMail: String!
+}
+
+type FosterHomeResult {
+    success: Boolean!
+    errors: [String]
+    fosterHome: FosterHome
+}
+
+type FosterHomesResult {
+    success: Boolean!
+    errors: [String]
+    fosterHomes: [FosterHome]
+}
+
+type SimpleResult {
+    success: Boolean!
+    errors: [String]
+}
+
+type Query {
+    fosterHomes: FosterHomesResult!
+    fosterHome(id: ID!): FosterHomeResult! 
+}
+
+type Mutation {
+    createFosterHome(fosterHome: FosterHome): FosterHomeResult!
+    updateFosterHome(fosterHome: FosterHome): FosterHomeResult!
+    deleteFosterHome(id: ID!): SimpleResult!
+}
+
+schema {
+    query: query
+    mutation: Mutation
+}
